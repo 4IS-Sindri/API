@@ -2,6 +2,10 @@
 
 This project is an API/website that will function similar to laravel.build, where you can use a curl command to get a build script to ease the start of developing a project.
 
+## Why Sindri?
+
+The name Sindri comes from Norse Mythology, where he's noted as the brother of Brokkr and Eitri. I, however, was introduced to Sindri by playing **God of War (2018)** where he (and Brokkr, called Brok) provides armor, upgrades, etc.
+
 ## Key Info
 
 - [Whimsical Workspace][0]
