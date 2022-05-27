@@ -4,20 +4,29 @@
   "version": "1.0.0",
   "description": "This project is an API/website that will function similar to laravel.build, where you can use a curl command to get a build script to ease the start of developing a project.",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
+    "pretty": "prettier --write .",
     "docker:build": "docker build -t 4lch4/sindri:latest .",
     "docker:stop": "docker stop sindri && docker rm sindri",
     "docker:start": "./start.sh",
     "docker:refresh": "pnpm docker:build && pnpm docker:stop && pnpm docker:start",
-    "licenses": "license-adder"
+    "m:build": "make build",
+    "m:start": "make start",
+    "m:stop": "make stop",
+    "m:rebuild": "make rebuild",
+    "m:logs": "make logs"
   },
   "keywords": [
     "koa",
     "typescript",
     "builds",
-    "templates"
+    "templates",
+    "api",
+    "bootstrapping",
+    "docker"
   ],
   "license": "MIT",
   "packageManager": "pnpm@7.1.6",
@@ -42,6 +51,7 @@
     "@koa/router": "^10.1.1",
     "chalk": "^5.0.1",
     "dayjs": "^1.11.2",
+    "execa": "^6.1.0",
     "fs-extra": "^10.1.0",
     "koa": "^2.13.4",
     "koa-body": "^5.0.0",
