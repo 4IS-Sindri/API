@@ -5,12 +5,14 @@ specifiers:
   '@4lch4/koa-router-printer': ^1.4.3
   '@4lch4/logger': ^1.7.4
   '@koa/router': ^10.1.1
+  '@types/fs-extra': ^9.0.13
   '@types/koa': ^2.13.4
   '@types/koa-logger': ^3.1.2
   '@types/koa__router': ^8.0.11
   '@types/node': ^17.0.35
   chalk: ^5.0.1
   dayjs: ^1.11.2
+  fs-extra: ^10.1.0
   koa: ^2.13.4
   koa-body: ^5.0.0
   koa-helmet: ^6.1.0
@@ -26,12 +28,14 @@ dependencies:
   '@koa/router': 10.1.1
   chalk: 5.0.1
   dayjs: 1.11.2
+  fs-extra: 10.1.0
   koa: 2.13.4
   koa-body: 5.0.0
   koa-helmet: 6.1.0
   koa-logger: 3.2.1
 
 devDependencies:
+  '@types/fs-extra': 9.0.13
   '@types/koa': 2.13.4
   '@types/koa-logger': 3.1.2
   '@types/koa__router': 8.0.11
@@ -191,6 +195,12 @@ packages:
     dependencies:
       '@types/node': 17.0.35
     dev: false
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 17.0.35
+    dev: true
 
   /@types/http-assert/1.5.3:
     resolution: {integrity: sha512-FyAOrDuQmBi8/or3ns4rwPno7/9tJTijVW6aQQjK02+kOQ8zmoNg2XJtAuQhvQcy1ASJq38wirX5//9J1EqoUA==}
