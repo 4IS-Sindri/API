@@ -6,28 +6,64 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/index.ts
- * File Created			— 2022-06-17 @ 00:50:32-05:00
- * Last Modified		— 2022-06-17 @ 01:03:23-05:00
+ * File Path				— /src/lib/utils/Server.ts
+ * File Created			— 2022-06-17 @ 01:02:31-05:00
+ * Last Modified		— 2022-06-17 @ 01:39:41-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
- *
+ * 
  * Copyright (c) 2022, Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import { getAppConfig, Server } from './lib/index.js'
+import { printRoutes } from '@4lch4/koa-router-printer'
+import Koa from 'koa'
+import KBody from 'koa-body'
+import Helmet from 'koa-helmet'
+import { IAppConfig } from '../../interfaces/index.js'
+import { getRoutes } from '../../routes/index.js'
 
-try {
-  const AppConfig = getAppConfig()
+export class Server {
+  private config: IAppConfig
+  private app: Koa
 
-  if (AppConfig) {
-    const server = new Server(AppConfig)
+  constructor(config: IAppConfig) {
+    this.app = new Koa()
 
-    server.addRoutes().addMiddleware().start()
-  } else console.error('AppConfig is empty')
-} catch (err) {
-  console.error(err)
-  process.exit(1)
+    this.config = config
+  }
+
+  start() {
+    this.app.listen(this.config.port, () => {
+      console.log(
+        `${this.config.name}-v${this.config.version} has come online!`
+      )
+    })
+
+    return this // For method chaining
+  }
+
+  addMiddleware() {
+    this.app.use(KBody())
+    this.app.use(Helmet())
+
+    return this // For method chaining
+  }
+
+  addRoutes() {
+    const routes = getRoutes()
+
+    for (const route of routes) {
+      this.app.use(route.routes())
+      this.app.use(route.allowedMethods())
+    }
+
+    printRoutes(this.app, {
+      displayHead: false,
+      displayPrefix: true
+    })
+
+    return this // For method chaining
+  }
 }

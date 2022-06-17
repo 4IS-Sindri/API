@@ -6,9 +6,9 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/index.ts
- * File Created			— 2022-06-17 @ 00:50:32-05:00
- * Last Modified		— 2022-06-17 @ 01:03:23-05:00
+ * File Path				— /src/routes/Health.ts
+ * File Created			— 2022-06-17 @ 00:56:45-05:00
+ * Last Modified		— 2022-06-17 @ 01:00:10-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -17,17 +17,22 @@
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import { getAppConfig, Server } from './lib/index.js'
+import { Successful } from '@4lch4/koa-oto'
+import { RouterContext } from '@koa/router'
 
-try {
-  const AppConfig = getAppConfig()
+import { BaseRoute } from '../lib/index.js'
 
-  if (AppConfig) {
-    const server = new Server(AppConfig)
+export class Health extends BaseRoute {
+  async getMethod(ctx: RouterContext) {
+    Successful.ok(ctx)
 
-    server.addRoutes().addMiddleware().start()
-  } else console.error('AppConfig is empty')
-} catch (err) {
-  console.error(err)
-  process.exit(1)
+    this.logger.success(`${ctx.method} ⇥ ${ctx.path} ⇥ (${ctx.status})`)
+  }
+
+  build() {
+    this.router.get('/health/liveness', ctx => this.getMethod(ctx))
+    this.router.get('/health/readiness', ctx => this.getMethod(ctx))
+
+    return this.router
+  }
 }

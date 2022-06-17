@@ -47,7 +47,7 @@ display-variables:
 # 3. Build a new version of the image.
 # 4. Run the container.
 # 5. Tail/follow the container logs.
-rebuild: stop clean build start logs
+rebuild: build stop clean start logs
 
 # Delete the Docker container and image.
 clean:
@@ -66,7 +66,7 @@ build-local:
 
 # Start the container with the latest tag, passing in the required environment
 # variables, and tailing/following the container logs.
-start: build
+start:
 	@docker run -d --name $(APP_NAME) -p $(APP_PORT):$(APP_PORT) \
 		-e API_PREFIX=$(API_PREFIX) \
 		$(IMAGE_NAME)

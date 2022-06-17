@@ -6,9 +6,9 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/index.ts
- * File Created			— 2022-06-17 @ 00:50:32-05:00
- * Last Modified		— 2022-06-17 @ 01:03:23-05:00
+ * File Path				— /src/routes/index.ts
+ * File Created			— 2022-06-17 @ 00:52:54-05:00
+ * Last Modified		— 2022-06-17 @ 01:00:22-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -17,17 +17,15 @@
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import { getAppConfig, Server } from './lib/index.js'
+import Router from '@koa/router'
+import { Health } from './Health.js'
 
-try {
-  const AppConfig = getAppConfig()
+const Endpoints = [Health]
 
-  if (AppConfig) {
-    const server = new Server(AppConfig)
+export function getRoutes(): Router[] {
+  const routes: Router[] = []
 
-    server.addRoutes().addMiddleware().start()
-  } else console.error('AppConfig is empty')
-} catch (err) {
-  console.error(err)
-  process.exit(1)
+  for (const Endpoint of Endpoints) routes.push(new Endpoint().build())
+
+  return routes
 }
