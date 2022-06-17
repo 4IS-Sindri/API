@@ -8,7 +8,7 @@
  * —————————————————————————————————————————————————————————————————————————————
  * File Path				— /src/lib/bases/index.ts
  * File Created			— 2022-06-17 @ 00:52:41-05:00
- * Last Modified		— 2022-06-17 @ 00:57:27-05:00
+ * Last Modified		— 2022-06-17 @ 07:19:49-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -17,4 +17,5 @@
  * —————————————————————————————————————————————————————————————————————————————
  */
 
+export * from './BaseBuilder.js'
 export * from './BaseRoute.js'

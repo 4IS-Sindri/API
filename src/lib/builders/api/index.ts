@@ -6,33 +6,14 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/routes/Health.ts
- * File Created			— 2022-06-17 @ 00:56:45-05:00
- * Last Modified		— 2022-06-17 @ 01:00:10-05:00
+ * File Path				— /src/lib/builders/api/index.ts
+ * File Created			— 2022-06-17 @ 07:30:47-05:00
+ * Last Modified		— 2022-06-17 @ 07:30:48-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
- *
+ * 
  * Copyright (c) 2022, Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import { Successful } from '@4lch4/koa-oto'
-import { RouterContext } from '@koa/router'
-
-import { BaseRoute } from '../lib/index.js'
-
-export class Health extends BaseRoute {
-  async getMethod(ctx: RouterContext) {
-    Successful.ok(ctx)
-
-    this.logger.success(`${ctx.method} ⇥ ${ctx.path} ⇥ (${ctx.status})`)
-  }
-
-  build() {
-    this.router.get('/health/liveness', ctx => this.getMethod(ctx))
-    this.router.get('/health/readiness', ctx => this.getMethod(ctx))
-
-    return this.router
-  }
-}

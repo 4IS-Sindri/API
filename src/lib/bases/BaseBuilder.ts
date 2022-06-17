@@ -6,19 +6,34 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/lib/constants/Router.ts
- * File Created			— 2022-06-17 @ 00:53:23-05:00
- * Last Modified		— 2022-06-17 @ 00:54:53-05:00
+ * File Path				— /src/lib/bases/BaseBuilder.ts
+ * File Created			— 2022-06-17 @ 07:16:53-05:00
+ * Last Modified		— 2022-06-17 @ 07:26:21-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
- * 
+ *
  * Copyright (c) 2022, Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import Router from '@koa/router'
+import { IAPIBuilderOpts } from '../../interfaces/index.js'
 
-export const DefaultRouter = new Router({
-  prefix: process.env.API_PREFIX
-})
+/**
+ * The base Builder class to be extended by all the other Builder classes. Each
+ * class is for building a specific type of project. For example, APIBuilder
+ * class will build out the beginning of a new API project.
+ *
+ * @abstract
+ */
+export abstract class BaseBuilder {
+  constructor(protected builderOpts: IAPIBuilderOpts) {}
+
+  /**
+   * The function that must be implemented by all extending classes that is
+   * called when the project needs to be built.
+   *
+   * @abstract
+   */
+  abstract build(): Promise<void>
+}

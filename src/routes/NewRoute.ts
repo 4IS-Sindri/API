@@ -6,9 +6,9 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/routes/index.ts
- * File Created			— 2022-06-17 @ 00:52:54-05:00
- * Last Modified		— 2022-06-17 @ 04:36:16-05:00
+ * File Path				— /src/routes/New.ts
+ * File Created			— 2022-06-17 @ 01:42:48-05:00
+ * Last Modified		— 2022-06-17 @ 07:12:49-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -16,17 +16,34 @@
  * Copyright (c) 2022, Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  */
+import { Successful } from '@4lch4/koa-oto'
+import { RouterContext } from '@koa/router'
+import { BaseRoute, InputUtil } from '../lib/index.js'
 
-import Router from '@koa/router'
-import { HealthRoute } from './HealthRoute.js'
-import { NewRoute } from './NewRoute.js'
+/** The Route class for the `/new` route. */
+export class NewRoute extends BaseRoute {
+  async handleRequest(ctx: RouterContext) {
+    const input = InputUtil.getInputParameters(ctx)
 
-const Endpoints = [HealthRoute, NewRoute]
+    // this.logger.info(ctx)
+    // this.logger.info(ctx.params)
+    // this.logger.info(ctx.querystring)
+    // this.logger.info(ctx.query)
 
-export function getRoutes(): Router[] {
-  const routes: Router[] = []
+    // this.logger.info('iUtil.getInputParameters(ctx)...')
+    // this.logger.info(input)
+    // this.logger.info(JSON.stringify(ctx, null, 2))
 
-  for (const Endpoint of Endpoints) routes.push(new Endpoint().build())
+    this.logger.info(input)
 
-  return routes
+    Successful.ok(ctx)
+    this.logger.info(`${ctx.method} ⇥ ${ctx.path} ⇥ (${ctx.status})`)
+  }
+
+  build() {
+    this.router.post('/new/:projectType', async ctx => this.handleRequest(ctx))
+    this.router.get('/new/:projectType', async ctx => this.handleRequest(ctx))
+
+    return this.router
+  }
 }

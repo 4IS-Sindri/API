@@ -8,7 +8,7 @@
  * —————————————————————————————————————————————————————————————————————————————
  * File Path				— /src/lib/bases/BaseRoute.ts
  * File Created			— 2022-06-17 @ 00:53:08-05:00
- * Last Modified		— 2022-06-17 @ 00:59:19-05:00
+ * Last Modified		— 2022-06-17 @ 04:36:51-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -16,9 +16,8 @@
  * Copyright (c) 2022, Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  */
-import Router from '@koa/router'
-import { DefaultRouter } from '../constants/index.js'
 import { Logger, logger } from '@4lch4/logger'
+import Router from '@koa/router'
 
 /**
  * The base route class to be extended by all other routes.
@@ -27,7 +26,11 @@ import { Logger, logger } from '@4lch4/logger'
  */
 export class BaseRoute {
   logger: Logger = logger
-  router: Router = DefaultRouter
+  router: Router
+
+  constructor() {
+    this.router = new Router({ prefix: process.env.API_PREFIX })
+  }
 
   build(): Router {
     return this.router

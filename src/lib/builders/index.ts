@@ -6,27 +6,15 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/routes/index.ts
- * File Created			— 2022-06-17 @ 00:52:54-05:00
- * Last Modified		— 2022-06-17 @ 04:36:16-05:00
+ * File Path				— /src/lib/builders/index.ts
+ * File Created			— 2022-06-17 @ 07:15:04-05:00
+ * Last Modified		— 2022-06-17 @ 07:20:33-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
- *
+ * 
  * Copyright (c) 2022, Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import Router from '@koa/router'
-import { HealthRoute } from './HealthRoute.js'
-import { NewRoute } from './NewRoute.js'
-
-const Endpoints = [HealthRoute, NewRoute]
-
-export function getRoutes(): Router[] {
-  const routes: Router[] = []
-
-  for (const Endpoint of Endpoints) routes.push(new Endpoint().build())
-
-  return routes
-}
+export * from './APIBuilder.js'

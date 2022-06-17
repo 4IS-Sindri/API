@@ -6,9 +6,9 @@
  * Author						— Devin W. Leaman (4lch4)
  * Company					— 4lch4 Industries, LLC.
  * —————————————————————————————————————————————————————————————————————————————
- * File Path				— /src/routes/index.ts
- * File Created			— 2022-06-17 @ 00:52:54-05:00
- * Last Modified		— 2022-06-17 @ 04:36:16-05:00
+ * File Path				— /src/routes/Health.ts
+ * File Created			— 2022-06-17 @ 00:56:45-05:00
+ * Last Modified		— 2022-06-17 @ 01:54:23-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -17,16 +17,21 @@
  * —————————————————————————————————————————————————————————————————————————————
  */
 
-import Router from '@koa/router'
-import { HealthRoute } from './HealthRoute.js'
-import { NewRoute } from './NewRoute.js'
+import { Successful } from '@4lch4/koa-oto'
+import { RouterContext } from '@koa/router'
+import { BaseRoute } from '../lib/index.js'
 
-const Endpoints = [HealthRoute, NewRoute]
+export class HealthRoute extends BaseRoute {
+  async getMethod(ctx: RouterContext) {
+    Successful.ok(ctx)
 
-export function getRoutes(): Router[] {
-  const routes: Router[] = []
+    this.logger.success(`${ctx.method} ⇥ ${ctx.path} ⇥ (${ctx.status})`)
+  }
 
-  for (const Endpoint of Endpoints) routes.push(new Endpoint().build())
+  build() {
+    this.router.get('/health/liveness', ctx => this.getMethod(ctx))
+    this.router.get('/health/readiness', ctx => this.getMethod(ctx))
 
-  return routes
+    return this.router
+  }
 }

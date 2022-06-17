@@ -8,7 +8,7 @@
  * —————————————————————————————————————————————————————————————————————————————
  * File Path				— /src/lib/index.ts
  * File Created			— 2022-06-17 @ 00:52:38-05:00
- * Last Modified		— 2022-06-17 @ 01:03:11-05:00
+ * Last Modified		— 2022-06-17 @ 04:35:07-05:00
  * Modified By			— Devin W. Leaman (4lch4) (hey@4lch4.email)
  * —————————————————————————————————————————————————————————————————————————————
  * MIT License ⸺ http://www.opensource.org/licenses/MIT
@@ -19,5 +19,5 @@
 
 export * from './bases/index.js'
 export * from './configs/index.js'
-export * from './constants/index.js'
+// export * from './constants/index.js'
 export * from './utils/index.js'
