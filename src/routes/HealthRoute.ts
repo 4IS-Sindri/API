@@ -29,8 +29,8 @@ export class HealthRoute extends BaseRoute {
   }
 
   build() {
-    this.router.get('/health/liveness', ctx => this.getMethod(ctx))
-    this.router.get('/health/readiness', ctx => this.getMethod(ctx))
+    this.router.get('/health/liveness', async ctx => this.getMethod(ctx))
+    this.router.get('/health/readiness', async ctx => this.getMethod(ctx))
 
     return this.router
   }
