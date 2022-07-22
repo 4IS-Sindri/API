@@ -94,3 +94,6 @@ push:
 # Executes the Prettier CLI command to format/clean up the codebase.
 pretty:
 	@prettier --write .
+
+redeploy:
+	@ssh SINDRI 'bash -s < /home/alcha/sw/redeploy-sindri.sh'
