@@ -20,7 +20,8 @@
     "m:start": "make start",
     "m:stop": "make stop",
     "m:rebuild": "make rebuild",
-    "m:logs": "make logs"
+    "m:logs": "make logs",
+    "test": "echo 'No tests yet'"
   },
   "keywords": [
     "koa",
