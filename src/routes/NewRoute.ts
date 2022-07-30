@@ -2,7 +2,12 @@ import { Successful } from '@4lch4/koa-oto'
 import { RouterContext } from '@koa/router'
 import { BaseRoute, InputUtil } from '../lib/index.js'
 
-/** The Route class for the `/new` route. */
+/**
+ * The Route class for the `/new` route which is used when bootstrapping a new
+ * project.
+ *
+ * @class
+ */
 export class NewRoute extends BaseRoute {
   async handleRequest(ctx: RouterContext) {
     const input = InputUtil.getInputParameters(ctx)
