@@ -1,0 +1,12 @@
+.env
+.dockerignore
+Dockerfile
+.npmrc
+.nvmrc
+.prettierrc
+.prettierignore
+coverage
+.gitignore
+Makefile
+*.sh
+
