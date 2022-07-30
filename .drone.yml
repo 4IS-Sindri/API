@@ -1,0 +1,5 @@
+kind: template
+load: Build-And-Publish-TS-Module.yaml
+data:
+  repoName: API
+  repoOwner: Sindri
