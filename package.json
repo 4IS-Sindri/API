@@ -1,7 +1,7 @@
 {
   "name": "@sindri/api",
   "displayName": "Sindri-API",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "This project is an API/website that will function similar to laravel.build, where you can use a curl command to get a build script to ease the start of developing a project.",
   "main": "dist/index.js",
   "type": "module",
